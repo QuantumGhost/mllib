@@ -15,27 +15,23 @@ def normalize(m):
     If m is a matrix, normalize each column of this matrix.
     """
     shape = np.shape(m)
-    if len(shape) == 1:
-        # m is a vector
-        return m - np.mean(m)
-    elif len(shape) == 2:
-        # m is a matrix
-        return m - np.mean(axis=0)
+    if len(shape) == 1 or len(shape) == 2:
+        # m is a vector or a matrix
+        mu = np.mean(m, axis=0)
+        return m - mu, mu
     else:
         raise exceptions.InvalidArgument("Neither a vector nor a matrix.")
 
 
-def scaling(m):
+def scale(m):
     """
     If m is a vector, scale it as m = m / std(m)
     If m is a matrix, scale each column of this matrix.
     """
     shape = np.shape(m)
-    if len(shape) == 1:
-        # m is a vector
-        return m / np.std(m)
-    elif len(shape) == 2:
-        # m is a matrix
-        return m / np.std(axis=0)
+    if len(shape) == 1 or len(shape) == 2:
+        # m is a vector or a matrix
+        sigma = np.std(m, axis=0, ddof=1)
+        return m / sigma, sigma
     else:
         raise exceptions.InvalidArgument("Neither a vector nor a matrix.")
