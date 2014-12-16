@@ -26,9 +26,9 @@ def linreg(X, y, alpha, l, initial_theta=None, num_iters=1000):
     :param num_iters: Number of iterations, default value is 1000.
     :type num_iters: Integral
     """
-    # Add the bias feature (all one's column)
-    # X =
     (m, n) = X.shape
+    # Add the bias feature (all one's column)
+    Xext = np.hstack((np.ones((m, 1)), X))
 
     def obj_fun(theta):
         """
@@ -42,5 +42,5 @@ def linreg(X, y, alpha, l, initial_theta=None, num_iters=1000):
         return val, grad
 
     if initial_theta is None:
-        initial_theta = np.zeros(n).T
+        initial_theta = np.zeros(n + 1).T
     (val, theta, history) = gradient_descent(obj_fun, initial_theta, alpha, num_iters)
