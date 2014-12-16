@@ -1,8 +1,12 @@
 # coding=utf-8
 
+from __future__ import (
+    division, print_function,
+    unicode_literals, absolute_import
+)
 import numpy as np
 from numpy import linalg as LA
-from optimize import gradient_descent
+from .optimize import gradient_descent
 
 
 def linreg(X, y, alpha, l, initial_theta=None, num_iters=1000):
