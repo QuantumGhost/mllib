@@ -5,6 +5,7 @@ from __future__ import (
     unicode_literals, absolute_import
 )
 
+
 class BaseError(Exception):
     pass
     
