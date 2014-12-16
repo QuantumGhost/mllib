@@ -35,3 +35,9 @@ def scale(m):
         return m / sigma, sigma
     else:
         raise exceptions.InvalidArgument("Neither a vector nor a matrix.")
+
+
+def normalize_and_scale(m):
+    m, mu = normalize(m)
+    m, sigma = scale(m)
+    return m, mu, sigma

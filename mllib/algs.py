@@ -52,5 +52,6 @@ def linreg(X, y, alpha, l, initial_theta=None, num_iters=1000):
 
     if initial_theta is None:
         initial_theta = np.zeros(n + 1).T
-    (val, theta, history) = gradient_descent(obj_fun, initial_theta, alpha, num_iters)
+    (val, theta, history) = gradient_descent(
+        obj_fun, initial_theta, alpha, num_iters)
     return val, theta, history
