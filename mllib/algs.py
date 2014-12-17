@@ -37,18 +37,18 @@ def linreg(X, y, alpha, l, initial_theta=None, num_iters=1000):
         """
         d = Xext.dot(theta) - y
         # the value of objective function
-        val = d.T.dot(d) / (2.0 * m)
+        j_val = d.T.dot(d) / (2.0 * m)
         # grt rid of the parameter for bias term
-        params = theta.copy()
-        params[0] = 0
+
         # regularization part of objective function
-        val += params.T.dot(params) / (2.0 * m) * l
+        j_val += LA.norm(theta[1:]) / (2.0 * m) * l
 
         # gradient
         grad = 1 / m * d.T.dot(Xext).T
         # regularization part of objective function
-        grad += l / m * params
-        return val, grad
+        grad += l / m * theta
+        grad[0] -= l / m * theta[0]    # Don't regularize theta for bias term
+        return j_val, grad
 
     if initial_theta is None:
         initial_theta = np.zeros(n + 1).T
