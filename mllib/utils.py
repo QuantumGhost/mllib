@@ -37,6 +37,10 @@ def scale(m):
         raise exceptions.InvalidArgument("Neither a vector nor a matrix.")
 
 
+def sigmoid(x):
+    return 1 / (1 + np.power(np.e, -x))
+
+
 def normalize_and_scale(m):
     m, mu = normalize(m)
     m, sigma = scale(m)
