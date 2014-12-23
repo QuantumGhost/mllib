@@ -42,7 +42,7 @@ def linreg(X, y, alpha, l, initial_theta=None, num_iters=1000):
         # grt rid of the parameter for bias term
 
         # regularization part of objective function
-        j_val += LA.norm(theta[1:]) / (2.0 * m) * l
+        j_val += LA.norm(theta[1:]) ** 2 / (2.0 * m) * l
 
         # gradient
         grad = 1 / m * d.T.dot(Xext).T
@@ -84,7 +84,7 @@ def logistic_reg(X, y, alpha, l, initial_theta=None, num_iters=1000):
         j_val = -1 / m * (
             y.T.dot(np.log(hx)) + (1 - y).dot(np.log(1 - hx)))
         # Regularization
-        j_val += l / (2 * m) * LA.norm(theta[1:])
+        j_val += l / (2 * m) * LA.norm(theta[1:]) ** 2
 
         grad = 1 / m * (hx - y).T.dot(Xext)
         # Regularization
